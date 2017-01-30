@@ -22,36 +22,41 @@ export class StoriesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // this.typeSub = this.route
-    //   .data
-    //   .subscribe(data => {
-    //     this.storiesType = (data as any).storiesType;
-    //   });
+    this.typeSub = this.route
+      .data
+      .subscribe(data => {
+        this.storiesType = (data as any).storiesType;
+      });
 
-    // this.pageSub = this.route.params.subscribe(params => {
-    //   this.pageNum = +params['page'] ? +params['page'] : 1;
-    //   this.hackerNewAPIService.fetchStories(this.storiesType, this.pageNum)
-    //     .subscribe(
-    //       response => this.items = response,
-    //       error => console.log('Error fetching ' + this.storiesType + ' stories'),
-    //       () => this.listStart = ((this.pageNum - 1) * 30) + 1
-    //     );
-    // });
+    this.pageSub = this.route.params.subscribe(params => {
+      this.pageNum = +params['page'] ? +params['page'] : 1;
+      this.hackerNewAPIService.fetchStories(this.storiesType, this.pageNum)
+        .subscribe(
+          response => this.items = response,
+          error => console.log('Error fetching ' + this.storiesType + ' stories'),
+          () => {
+            this.listStart = ((this.pageNum - 1) * 30) + 1
+            window.scrollTo(0, 0);
+          }
+        );
+    });
 
-    this.storiesType = this.route.snapshot.data['storiesType'];
-    this.pageNum = this.route.snapshot.params['page'] ? this.route.snapshot.params['page'] : 1;
-    this.hackerNewAPIService.fetchStories(this.storiesType, this.pageNum)
-      .subscribe(
-        response => {
-          this.items = response;
-          console.log("reponse");
-        },
-        error => console.log('Error fetching ' + this.storiesType + ' stories'),
-        () => {
-          this.listStart = ((this.pageNum - 1) * 30) + 1;
-          console.log("listStart");
-        }
-      );
+    // Tidak update variabelnya, tidak reload data juga, seakan komponen tidak berubah
+    // this.storiesType = this.route.snapshot.data['storiesType'];
+    // this.pageNum = +this.route.snapshot.params['page'] ? +this.route.snapshot.params['page'] : 1;
+    // this.hackerNewAPIService.fetchStories(this.storiesType, this.pageNum)
+    //   .subscribe(
+    //     response => {
+    //       this.items = response;
+    //       console.log("reponse");
+    //     },
+    //     error => console.log('Error fetching ' + this.storiesType + ' stories'),
+    //     () => {
+    //       this.listStart = ((this.pageNum - 1) * 30) + 1;
+    //       window.scrollTo(0, 0);
+    //       console.log("listStart = " + this.pageNum);
+    //     }
+    //   );
   }
 
 }

@@ -22,6 +22,7 @@ import {routing} from "./app.routes";
     FooterComponent,
     ItemComponent,
     DomainPipe,
+    ItemCommentsComponent,
     ItemCommentsComponent
   ],
   imports: [
