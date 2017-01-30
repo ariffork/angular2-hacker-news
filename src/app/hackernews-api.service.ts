@@ -22,4 +22,9 @@ export class HackernewsApiService {
       .map(response => response.json());
   }
 
+  fetchComment(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/item/${id}`)
+      .map(response => response.json());
+  }
+
 }

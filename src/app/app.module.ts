@@ -13,6 +13,8 @@ import {MomentModule} from "angular2-moment/index";
 import { DomainPipe } from './domain.pipe';
 import { ItemCommentsComponent } from './item-comments/item-comments.component';
 import {routing} from "./app.routes";
+import { CommentTreeComponent } from './comment-tree/comment-tree.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {routing} from "./app.routes";
     ItemComponent,
     DomainPipe,
     ItemCommentsComponent,
-    ItemCommentsComponent
+    ItemCommentsComponent,
+    CommentTreeComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
