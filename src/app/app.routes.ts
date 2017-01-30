@@ -1,6 +1,6 @@
 import {Routes, RouterModule} from "@angular/router";
-import {StoriesComponent} from "./stories/stories.component";
-import {ItemCommentsComponent} from "./item-comments/item-comments.component";
+import {StoriesComponent} from "./components/stories/stories.component";
+import {ItemCommentsComponent} from "./components/item-comments/item-comments.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'news/1', pathMatch: 'full'},
