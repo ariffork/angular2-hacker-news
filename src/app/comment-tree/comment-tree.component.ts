@@ -1,4 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import {Comment} from "../models/comment";
 
 @Component({
   selector: 'app-comment-tree',
@@ -6,12 +7,10 @@ import {Component, OnInit, Input} from '@angular/core';
   styleUrls: ['./comment-tree.component.scss']
 })
 export class CommentTreeComponent implements OnInit {
+  @Input() commentTree: Comment[];
 
-  @Input() commentTree;
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

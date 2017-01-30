@@ -1,4 +1,6 @@
 import {Component, ViewEncapsulation} from '@angular/core';
+import {Settings} from "./models/settings";
+import {SettingsService} from "./services/settings.service";
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,12 @@ import {Component, ViewEncapsulation} from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app works!';
+
+  settings: Settings;
+  theme: string;
+
+  constructor(private settingsService: SettingsService) {
+    this.settings = this.settingsService.settings;
+  }
+
 }

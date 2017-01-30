@@ -8,7 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { StoriesComponent } from './stories/stories.component';
 import { FooterComponent } from './footer/footer.component';
 import { ItemComponent } from './item/item.component';
-import {HackernewsApiService} from "./services/hackernews-api.service";
+import {HackerNewsAPIService} from "./services/hackernews-api.service";
 import {MomentModule} from "angular2-moment/index";
 import { DomainPipe } from './pipes/domain.pipe';
 import { ItemCommentsComponent } from './item-comments/item-comments.component';
@@ -16,6 +16,11 @@ import {routing} from "./app.routes";
 import { CommentTreeComponent } from './comment-tree/comment-tree.component';
 import { CommentComponent } from './comment/comment.component';
 import { LoaderComponent } from './loader/loader.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import { SettingsComponent } from './settings/settings.component';
+import {SettingsService} from "./services/settings.service";
+import { UserComponent } from './user/user.component';
+import { CommentPipe } from './pipes/comment.pipe';
 
 @NgModule({
   declarations: [
@@ -29,7 +34,11 @@ import { LoaderComponent } from './loader/loader.component';
     ItemCommentsComponent,
     CommentTreeComponent,
     CommentComponent,
-    LoaderComponent
+    LoaderComponent,
+    ErrorMessageComponent,
+    SettingsComponent,
+    UserComponent,
+    CommentPipe
   ],
   imports: [
     BrowserModule,
@@ -38,7 +47,7 @@ import { LoaderComponent } from './loader/loader.component';
     MomentModule,
     routing
   ],
-  providers: [HackernewsApiService],
+  providers: [HackerNewsAPIService, SettingsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

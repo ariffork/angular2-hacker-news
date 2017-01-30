@@ -1,62 +1,49 @@
 import { Component, OnInit } from '@angular/core';
-import {HackernewsApiService} from "../services/hackernews-api.service";
-import {ActivatedRoute} from "@angular/router";
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute } from '@angular/router';
+
+import {Story} from "../models/story";
+import {HackerNewsAPIService} from "../services/hackernews-api.service";
+
+
 
 @Component({
   selector: 'app-stories',
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.scss']
 })
+
 export class StoriesComponent implements OnInit {
 
-  typeSub: any;
-  pageSub: any;
-  items:any;
+  typeSub: Subscription;
+  pageSub: Subscription;
+  items: Story[];
   storiesType;
   pageNum: number;
   listStart: number;
+  errorMessage: string;
 
   constructor(
-    private hackerNewAPIService: HackernewsApiService,
+    private hackerNewsAPIService: HackerNewsAPIService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.typeSub = this.route
       .data
-      .subscribe(data => {
-        this.storiesType = (data as any).storiesType;
-      });
+      .subscribe(data => this.storiesType = (data as any).storiesType);
 
     this.pageSub = this.route.params.subscribe(params => {
-      this.pageNum = +params['page'] ? +params['page'] : 1;
-      this.hackerNewAPIService.fetchStories(this.storiesType, this.pageNum)
+      this.pageNum = params['page'] ? +params['page'] : 1;
+      this.hackerNewsAPIService.fetchStories(this.storiesType, this.pageNum)
         .subscribe(
-          response => this.items = response,
-          error => console.log('Error fetching ' + this.storiesType + ' stories'),
+          items => this.items = items,
+          error => this.errorMessage = 'Could not load ' + this.storiesType + ' stories.',
           () => {
-            this.listStart = ((this.pageNum - 1) * 30) + 1
+            this.listStart = ((this.pageNum - 1) * 30) + 1;
             window.scrollTo(0, 0);
-          }
-        );
+          });
     });
-
-    // Tidak update variabelnya, tidak reload data juga, seakan komponen tidak berubah
-    // this.storiesType = this.route.snapshot.data['storiesType'];
-    // this.pageNum = +this.route.snapshot.params['page'] ? +this.route.snapshot.params['page'] : 1;
-    // this.hackerNewAPIService.fetchStories(this.storiesType, this.pageNum)
-    //   .subscribe(
-    //     response => {
-    //       this.items = response;
-    //       console.log("reponse");
-    //     },
-    //     error => console.log('Error fetching ' + this.storiesType + ' stories'),
-    //     () => {
-    //       this.listStart = ((this.pageNum - 1) * 30) + 1;
-    //       window.scrollTo(0, 0);
-    //       console.log("listStart = " + this.pageNum);
-    //     }
-    //   );
   }
-
 }

@@ -1,4 +1,9 @@
-import {Component, OnInit, Input} from "@angular/core";
+import { Component, Input, OnInit } from '@angular/core';
+
+import {Story} from "../models/story";
+import {Settings} from "../models/settings";
+import {SettingsService} from "../services/settings.service";
+
 
 @Component({
   selector: 'item',
@@ -6,13 +11,17 @@ import {Component, OnInit, Input} from "@angular/core";
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
+  @Input() item: Story;
+  settings: Settings;
 
-  @Input() item;
+  constructor(private settingsService: SettingsService) {
+    this.settings = this.settingsService.settings;
+  }
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
-
+  get hasUrl(): boolean {
+    return this.item.url.indexOf('http') === 0;
   }
 
 }

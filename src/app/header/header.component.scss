@@ -1,7 +1,7 @@
-$mobile-only: "only screen and (max-width : 768px)";
+@import "../shared/media";
+@import "../shared/themes";
 
 #header {
-  background-color: #b92b27;
   color: #fff;
   padding: 6px 0;
   line-height: 18px;
@@ -26,6 +26,21 @@ $mobile-only: "only screen and (max-width : 768px)";
   height: 66px;
 }
 
+.logo-inner {
+  width: 32px;
+  position: absolute;
+  left: 17px;
+  top: 18px;
+  z-index: -1;
+  height: 32px;
+  border-radius: 50%;
+
+  @media #{$mobile-only} {
+    left: 16px;
+    top: 12px;
+  }
+}
+
 .logo {
   width: 50px;
   padding: 3px 8px 0;
@@ -37,7 +52,7 @@ $mobile-only: "only screen and (max-width : 768px)";
 }
 
 h1 {
-  font-weight: bold;
+  font-weight: normal;
   display: inline-block;
   vertical-align:middle;
   margin: 0;
@@ -64,6 +79,7 @@ h1 {
   height: 20px;
   left: 10px;
   top: 27px;
+  z-index: -1;
 
   @media #{$mobile-only} {
     top: 22px;
@@ -83,34 +99,51 @@ h1 {
 
 .header-nav {
   display: inline-block;
+  margin-left: 20px;
 
   @media #{$mobile-only} {
-    float: right;
-    margin-right: 20px;
+    margin-left: 60px;
   }
 
   a {
-    color: #fff;
+    color: hsla(0,0%,100%,.8);
     text-decoration: none;
+    margin: 0 5px;
+    letter-spacing: 1.8px;
 
     &:hover {
-      font-weight: bold;
-    };
+      color: #fff;
+    }
+  }
+
+  .active {
+    color: #fff;
   }
 }
 
 .info {
   position: absolute;
+  top: 0;
   right: 20px;
-  font-size: 16px;
+  height: 100%;
 
   @media #{$mobile-only} {
-    display: none;
+    right: 10px;
   }
 
-  a {
-    color: #fff;
-    font-weight: bold;
-    text-decoration: none;
+  img {
+    opacity: 0.8;
+    width: 25px;
+    margin-top: 21.5px;
+    display: block;
+
+    &:hover {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    @media #{$mobile-only} {
+      margin-top: 15px;
+    }
   }
 }
