@@ -10,11 +10,12 @@ import { FooterComponent } from './footer/footer.component';
 import { ItemComponent } from './item/item.component';
 import {HackernewsApiService} from "./services/hackernews-api.service";
 import {MomentModule} from "angular2-moment/index";
-import { DomainPipe } from './domain.pipe';
+import { DomainPipe } from './pipes/domain.pipe';
 import { ItemCommentsComponent } from './item-comments/item-comments.component';
 import {routing} from "./app.routes";
 import { CommentTreeComponent } from './comment-tree/comment-tree.component';
 import { CommentComponent } from './comment/comment.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { CommentComponent } from './comment/comment.component';
     ItemCommentsComponent,
     ItemCommentsComponent,
     CommentTreeComponent,
-    CommentComponent
+    CommentComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
