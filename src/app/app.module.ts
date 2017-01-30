@@ -8,7 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { StoriesComponent } from './stories/stories.component';
 import { FooterComponent } from './footer/footer.component';
 import { ItemComponent } from './item/item.component';
-import {HackernewsApiService} from "./hackernews-api.service";
+import {HackernewsApiService} from "./services/hackernews-api.service";
 import {MomentModule} from "angular2-moment/index";
 import { DomainPipe } from './domain.pipe';
 import { ItemCommentsComponent } from './item-comments/item-comments.component';

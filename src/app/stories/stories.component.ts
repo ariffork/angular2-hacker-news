@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HackernewsApiService} from "../hackernews-api.service";
+import {HackernewsApiService} from "../services/hackernews-api.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
